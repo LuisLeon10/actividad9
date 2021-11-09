@@ -1,0 +1,104 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+container-fluid{
+    margin: 0;
+    padding: 0;
+}
+#cuerpo{
+    padding: 0;
+    display: flex;
+    width: 100%;
+    
+}
+#encabezado{
+    background-color: rgba(83, 97, 224, 0.712);
+    color: rgb(201, 61, 61);
+    text-align: center;
+    padding: 20px 0px;
+}
+#agregarProducto{
+    max-width: 30%;
+    min-width: 30%;
+    padding: 30px;
+    border: 2px solid rgb(156, 0, 0);
+}
+#inventario{
+    max-width: 70%;
+    min-width: 70%;
+    padding: 30px;
+    border: 2px solid rgb(156, 0, 0);
+}
+.caja-inventario{
+    display: flex;
+    text-align: center;
+    margin: 10px;
+    justify-content: space-between;
+}
+
+#piezas{
+    display: flex;
+    width: 25%;
+}
+#nombre{
+    width: 25%;
+    height: 20px;
+}
+#precio{
+    width: 25%;
+}
+#totalP{
+    width: 25%;
+}
+#totales{
+    width: 100%;
+    text-align: end;
+}
+/* Bloques */
+.alerta {
+    width: 300px;
+    border-radius: 15px;
+    background-color: lightgray;
+    border: 1px solid white;
+    box-shadow: 1px 1px 2px gray;
+    position: absolute;
+}
+
+/* Elementos */
+.alerta__header {
+    border-bottom: 1px solid white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-family:cursive;
+}
+
+.alerta__contenido {
+    font-size: 14px;
+    padding: 10px;
+    
+}
+
+.alerta__footer {
+    border-top: 1px solid white;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    display: block;
+    font-family: cursive;
+}
+
+/* Modificadores */
+/* Estilo */
+.alerta--info {
+    background-color: rgb(156, 0, 0);
+    color: white;
+}
+
+/* Posición */
+.alerta--abajo-derecha {
+    right: 30px;
+    bottom: 30px;
+}

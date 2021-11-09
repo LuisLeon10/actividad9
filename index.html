@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/estilos.css" type="text/css"/>
+    <title>Formulario</title>
+</head>
+<body>
+    <header class="container-fluid" id="encabezado">
+        <h1>Las barras Praderas</h1>
+        <h5>Luis Ángel Calvillo León - EVN401</h5>
+    </header>
+    <section class="container-fluid" id="cuerpo">
+        <div id="agregarProducto">
+            <h4>--Nuevo Producto--</h4>
+                <label>Nombre:</label>
+                <input type="text" class="form-control" v-model="nombre">
+                <label>Cantidad:</label>
+                <input type="number" class="form-control" v-model="cantidad">
+                <label>Precio:</label>
+                <input type="number" class="form-control" v-model="precio">
+                <label>Descripción:</label>
+                <input type="text" class="form-control" v-model="descripcion">
+                <label>Frase:</label>
+                <input type="text" class="form-control" v-model="fraseP">
+                <br>
+                <input type="button" value="Agregar" class="btn btn-info" @click="agregar()">
+        </div>
+        <div id="inventario">
+            <h4>--Inventario--</h4>
+            <div class="caja-inventario">
+                <p><b>Cantidad</b></p>
+                <p><b>Nombre</b></p>
+                <p><b>Precio Unitario</b></p>
+                <p><b>Total</b></p>
+                <p><b>Extra</b></p>
+            </div>
+            <div class="caja-inventario" v-for="(producto, index) in productos" :key="index">
+                <div id="piezas">
+                    <input type="button" value="+" class="btn btn-danger" @click="producto.cantidad++">
+                    <input type="number" class="form-control" v-model="producto.cantidad" min="0">
+                    <input type="button" value="-" class="btn btn-danger" @click="producto.cantidad--">
+                </div>
+                <p id="nombre">{{producto.nombre}}</p>
+                <p id="precio">${{producto.precio}}</p>
+                <p id="totalP">${{producto.precio*producto.cantidad}}</p>
+                <input type="button" value="Ver más" class="btn btn-danger" @click="mostrarInfo=true; indiceProducto(index)">
+                <alerta @ocultar="mostrarInfo = false" v-show="mostrarInfo" tipo="alerta--info" posicion="alerta--abajo-derecha" :frase="productos[indexDos].fraseP"> 
+                    <template slot="header">
+                        {{productos[indexDos].nombre}}
+                    </template>
+                    <template>
+                        {{productos[indexDos].descripcion}}
+                    </template>
+                    <template slot="footer" slot-scope="mensaje">
+                        {{ mensaje.tipo }}
+                    </template>
+                </alerta>
+            </div>
+            <div id="totales">
+                <p>Productos: {{numProductos}}</p>
+                <p>Subtotal: ${{subtotal}}</p>
+                <p>IVA: ${{iva}}</p>
+                <p>Total: ${{total}}</p>
+            </div>
+        </div>
+    </section>
+    <template id="mensajeAlerta">
+        <article class="alerta" :class="[tipo, posicion]">
+            <h3 class="alerta__header">
+                <button class="btn btn-dark" @click="ocultarMensaje()">X</button>
+                <slot name="header" ]>
+                   Contenido del titulo
+                </slot>
+            </h3>
+            <span>
+                <slot>
+                    Contenido del cuerpo
+                </slot>
+            </span>
+            <span class="alerta__footer">
+                <slot name="footer" :tipo="alerta"></slot>
+            </span>
+        </article>
+    </template>
+    <script src="js/funciones.js"></script>
+</body>
+</html>
